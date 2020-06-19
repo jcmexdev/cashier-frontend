@@ -67,7 +67,7 @@ class CloseCashRegister extends React.Component {
                 <span className='feedback'></span>
             </div>
          
-            <input type="submit" value="Abrir caja"/>
+            <input type="submit" value="Cerrar caja"/>
         </form>;
     }
 }
