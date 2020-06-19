@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { URL_GET_OPEN_REGISTER } from './constants';
+import OpenCashRegister from './OpenCashRegister';
+import CloseCashRegister from './CloseCashRegister';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends React.Component {
+
+  state = {
+    loading:true,
+    render: ''
+  }
+
+  async componentDidMount() {
+    let response = await fetch(URL_GET_OPEN_REGISTER);
+    let { data } = await response.json();
+    this.setState({loading:false})
+    if (data.opening_value != null ) {
+      this.setState({render: 'close'});
+    } else {
+      this.setState({render: 'open'});
+    }
+  }
+
+  render() { 
+    if(this.state.loading){
+      return 'loading...'
+    }
+
+    return this.state.render === 'open' ? <OpenCashRegister /> : <CloseCashRegister />
+  };
 }
 
 export default App;
