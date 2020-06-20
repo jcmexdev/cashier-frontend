@@ -26,7 +26,9 @@ class App extends React.Component {
 
   render() { 
     if(this.state.loading){
-      return 'loading...'
+      return <section className='content'>
+        loading...
+      </section>
     }
 
     return this.state.render === 'open' ? <OpenCashRegister /> : <CloseCashRegister />
