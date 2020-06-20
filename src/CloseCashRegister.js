@@ -1,5 +1,6 @@
 import React from 'react';
 import { URL_STORE_CLOSE_REGISTER } from './constants';
+import { showFeedBack } from './functions';
 
 class CloseCashRegister extends React.Component {
 
@@ -11,8 +12,13 @@ class CloseCashRegister extends React.Component {
         });
         if(response.status === 200) {
             window.location.href= '/';
+        } else if (response.status === 400) {
+            response = await response.json();
+            let { errors } = response;
+           showFeedBack(errors);
+        } else {
+            alert('Something unexpected has occurred');
         }
-        // show feedback
     }
 
     render() {
@@ -58,7 +64,7 @@ class CloseCashRegister extends React.Component {
                     <input type="number" name="closing_value" id="closing_value" min="0" step="1" required   />
                     <span className='feedback'></span>
                 </div>
-            
+
                 <input type="submit" value="Cerrar caja"/>
             </form>;
         </section>

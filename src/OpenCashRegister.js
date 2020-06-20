@@ -1,5 +1,6 @@
 import React from 'react';
 import { URL_STORE_OPEN_REGISTER } from './constants';
+import { showFeedBack } from './functions';
 
 class OpenCashRegister extends React.Component {
 
@@ -12,9 +13,13 @@ class OpenCashRegister extends React.Component {
         
         if(response.status === 200) {
             window.location.href = "/";   
-        } 
-
-        //show feedback
+        } else if (response.status === 400) {
+            response = await response.json();
+            let { errors } = response;
+            showFeedBack(errors);
+        } else {
+            alert('Something unexpected has occurred');
+        }
     }
 
     render() {
