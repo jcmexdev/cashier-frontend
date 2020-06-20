@@ -3,16 +3,6 @@ import { URL_STORE_CLOSE_REGISTER } from './constants';
 
 class CloseCashRegister extends React.Component {
 
-    state = {
-        'closing_date': null,
-        'closing_hour': null,
-        'card_value': null,
-        'cash_value': null,
-        'closing_value': null,        
-        'sales_value': null        
-    }
-
-
     handleSubmit = async (event) => {
         event.preventDefault();
         let response = await fetch(URL_STORE_CLOSE_REGISTER, {
@@ -26,7 +16,7 @@ class CloseCashRegister extends React.Component {
     }
 
     render() {
-        return <>
+        return <section className='content'>
             <h3>Formulario de cierre de caja</h3>
             <form action="" method="POST" className='form' onSubmit={ (event)=> this.handleSubmit(event) }>
                 <div className="form-group">
@@ -71,7 +61,7 @@ class CloseCashRegister extends React.Component {
             
                 <input type="submit" value="Cerrar caja"/>
             </form>;
-        </>
+        </section>
     }
 }
 

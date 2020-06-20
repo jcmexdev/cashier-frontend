@@ -18,7 +18,7 @@ class OpenCashRegister extends React.Component {
     }
 
     render() {
-        return <>
+        return <section className='content'>
             <h3>Formulario de apertura de caja</h3>
             <form action="" method="POST" className='form' onSubmit={ (event)=> this.handleSubmit(event) }>
                 <div className="form-group">
@@ -47,7 +47,7 @@ class OpenCashRegister extends React.Component {
                 </div>
                 <input type="submit" value="Abrir caja"/>
             </form>
-        </>;
+        </section>;
     }
 }
 
