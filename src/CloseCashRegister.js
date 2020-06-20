@@ -1,4 +1,5 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import { URL_STORE_CLOSE_REGISTER } from './constants';
 import { showFeedBack } from './functions';
 
@@ -11,7 +12,16 @@ class CloseCashRegister extends React.Component {
             body: new FormData(event.target)
         });
         if(response.status === 200) {
-            window.location.href= '/';
+            Swal.fire({
+                title: 'Cierre Éxitoso',
+                text: 'La caja fue cerrada con éxito',
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'Entendido',
+              }).then((result) => {
+                window.location.href = '/';
+              })
+            
         } else if (response.status === 400) {
             response = await response.json();
             let { errors } = response;

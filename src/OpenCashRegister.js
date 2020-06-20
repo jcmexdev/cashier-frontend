@@ -1,8 +1,11 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 import { URL_STORE_OPEN_REGISTER } from './constants';
 import { showFeedBack } from './functions';
 
 class OpenCashRegister extends React.Component {
+
+    
 
     handleSubmit = async (event) => {
         event.preventDefault();
@@ -12,7 +15,16 @@ class OpenCashRegister extends React.Component {
         });
         
         if(response.status === 200) {
-            window.location.href = "/";   
+            Swal.fire({
+                title: 'Apertura Éxitosa',
+                text: 'La caja fue abierta con éxito',
+                icon: 'success',
+                showCancelButton: false,
+                confirmButtonText: 'Entendido',
+              }).then((result) => {
+                window.location.href = '/';
+              })
+               
         } else if (response.status === 400) {
             response = await response.json();
             let { errors } = response;
